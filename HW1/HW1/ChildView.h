@@ -17,7 +17,7 @@ public:
 
 // defs
 public:
-	enum Mode
+	enum class Mode
 	{
 		VALUES,
 		ZEROS
@@ -32,19 +32,18 @@ public:
 	virtual ~CChildView();
 
 private: //methods
-	void setTranslatePixel(CPaintDC &dc, const int &x, const int &y, const COLORREF &color);
 	double calcFunction(const int &a, const int &b, const int &s, const int &w, const int &h, 
 		const int &x, const int &y);
 	COLORREF calcColor(const double &f, const COLORREF &c1, const COLORREF &c2);
 
 private: //members
 	ParametersDialog _parameters_dialog;
-	int _w0;
-	int _h0;
+
 	Mode _curr_mode;
 
 	// Generated message map functions
 protected:
+	//Salih: not void OnDraw() override;??
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
 public:

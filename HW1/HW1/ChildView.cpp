@@ -14,11 +14,12 @@
 // CChildView
 
 CChildView::CChildView() :
-	_parameters_dialog(),
-	_w0(0),
-	_h0(0),
+	_parameters_dialog(this),
 	_curr_mode(Mode::ZEROS)
 {
+	//CRect rect;
+	//GetClientRect(rect);
+	//_parameters_dialog.setS(rect.Width() / 10);
 }
 
 CChildView::~CChildView()
@@ -33,6 +34,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_UPDATE_COMMAND_UI(ID_MODE_VALUES, &CChildView::OnUpdateModeValues)
 	ON_COMMAND(ID_MODE_ZEROS, &CChildView::OnModeZeros)
 	ON_COMMAND(ID_MODE_VALUES, &CChildView::OnModeValues)
+	ON_COMMAND(ID_TEST, &CChildView::OnFileOpenparametersdialog)
 END_MESSAGE_MAP()
 
 
@@ -62,9 +64,6 @@ void CChildView::OnPaint()
 	auto width = rect.Width();
 	auto height = rect.Height();
 
-	_w0 = width / 2;
-	_h0 = height / 2;
-
 	auto c1 = _parameters_dialog.getColor1();
 	auto c2 = _parameters_dialog.getColor2();
 
@@ -79,10 +78,6 @@ void CChildView::OnPaint()
 	}
 }
 
-void CChildView::setTranslatePixel(CPaintDC &dc, const int &x, const int &y, const COLORREF &color)
-{
-	dc.SetPixel(x + _w0, -y + _h0, color);
-}
 
 double CChildView::calcFunction(const int & a, const int & b, const int & s, const int &w, const int &h,
 	const int & x, const int & y)
@@ -126,10 +121,12 @@ void CChildView::OnUpdateModeValues(CCmdUI *pCmdUI)
 void CChildView::OnModeZeros()
 {
 	_curr_mode = Mode::ZEROS;
+	RedrawWindow();
 }
 
 
 void CChildView::OnModeValues()
 {
 	_curr_mode = Mode::VALUES;
+	RedrawWindow();
 }

@@ -5,7 +5,7 @@
 
 class ParametersDialog : public CDialog
 {
-	DECLARE_DYNAMIC(ParametersDialog)
+	DECLARE_DYNAMIC(ParametersDialog) 
 
 public:
 	ParametersDialog(CWnd* pParent = nullptr);   // standard constructor
@@ -14,6 +14,7 @@ public:
 	COLORREF getA() const { return _a; }
 	COLORREF getB() const { return _b; }
 	COLORREF getS() const { return _s; }
+	void setS(const int& new_s) { _s = new_s; }
 	virtual ~ParametersDialog();
 
 // Dialog Data
@@ -24,20 +25,19 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+	DECLARE_MESSAGE_MAP() 
 public:
 	afx_msg void OnBnClickedButton1();
-
+	afx_msg void OnBnClickedButton2();
+	CEdit txt_a;
+	CEdit txt_b;
+	CEdit txt_s;
+	afx_msg void OnBnClickedOk();
 private:
 	COLORREF _c1;
 	COLORREF _c2;
 	int _a;
 	int _b;
 	int _s;
-public:
-	afx_msg void OnBnClickedButton2();
-	CEdit txt_a;
-	CEdit txt_b;
-	CEdit txt_s;
-	afx_msg void OnBnClickedOk();
+
 };

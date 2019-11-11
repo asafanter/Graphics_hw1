@@ -17,7 +17,7 @@ ParametersDialog::ParametersDialog(CWnd* pParent /*=nullptr*/)
 	_c2(RGB(255, 255, 255)),
 	_a(1),
 	_b(1),
-	_s(62)
+	_s(1)
 {
 	
 }
@@ -26,12 +26,16 @@ ParametersDialog::~ParametersDialog()
 {
 }
 
+//Salih: huh?
 void ParametersDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT1, txt_a);
 	DDX_Control(pDX, IDC_EDIT3, txt_b);
 	DDX_Control(pDX, IDC_EDIT2, txt_s);
+	DDX_Text(pDX, IDC_EDIT1, _a);
+	DDX_Text(pDX, IDC_EDIT3, _b);
+	DDX_Text(pDX, IDC_EDIT2, _s);
 }
 
 
@@ -43,6 +47,8 @@ END_MESSAGE_MAP()
 
 
 // ParametersDialog message handlers
+//Salih: not working, not updating the screen on click
+
 
 
 void ParametersDialog::OnBnClickedButton1()
@@ -85,14 +91,14 @@ void ParametersDialog::OnBnClickedOk()
 		return;
 	}
 
-	if (a < 0 || b < 0 || s < 0)
+	if (a <= 0 || b <= 0 || s <= 0)
 	{
 		AfxMessageBox(_T("only positive numbers are allowed"), MB_OK);
 		return;
 	}
 
-	_a = a;
-	_b = b;
-	_s = s;
+
 	CDialog::OnOK();
+
+	GetParent()->RedrawWindow();
 }
