@@ -33,6 +33,7 @@ public:
 	CEdit txt_b;
 	CEdit txt_s;
 	afx_msg void OnBnClickedOk();
+	void initSByWidth(int width);//needed since the dialog cons' is called before the childView cons' (width is got from)
 private:
 	COLORREF _c1;
 	COLORREF _c2;

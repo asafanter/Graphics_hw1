@@ -7,9 +7,13 @@
 #include "afxdialogex.h"
 
 
+
+
 // ParametersDialog dialog
 
 IMPLEMENT_DYNAMIC(ParametersDialog, CDialog)
+
+
 
 ParametersDialog::ParametersDialog(CWnd* pParent /*=nullptr*/)
 	: CDialog(PARAMETERS_DIALOG, pParent),
@@ -18,9 +22,16 @@ ParametersDialog::ParametersDialog(CWnd* pParent /*=nullptr*/)
 	_a(1),
 	_b(1),
 	_s(1)
-{
-	
+{	
+
 }
+
+
+void ParametersDialog::initSByWidth(int const width) {
+
+	_s = width / 10;
+}
+
 
 ParametersDialog::~ParametersDialog()
 {

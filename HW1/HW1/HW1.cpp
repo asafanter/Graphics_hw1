@@ -101,11 +101,10 @@ BOOL CHW1App::InitInstance()
 
 
 
-
-
 	// The one and only window has been initialized, so show and update it
 	pFrame->ShowWindow(SW_SHOW);
 	pFrame->UpdateWindow();
+
 	return TRUE;
 }
 

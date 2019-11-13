@@ -38,12 +38,13 @@ private: //methods
 
 private: //members
 	ParametersDialog _parameters_dialog;
-
 	Mode _curr_mode;
+	BOOL m_firstTime;
 
 	// Generated message map functions
 protected:
-	//Salih: not void OnDraw() override;??
+
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
 public:
@@ -52,5 +53,7 @@ public:
 	afx_msg void OnUpdateModeValues(CCmdUI *pCmdUI);
 	afx_msg void OnModeZeros();
 	afx_msg void OnModeValues();
+
+
 };
 

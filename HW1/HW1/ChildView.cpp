@@ -13,14 +13,19 @@
 
 // CChildView
 
+
 CChildView::CChildView() :
 	_parameters_dialog(this),
-	_curr_mode(Mode::ZEROS)
+	_curr_mode(Mode::ZEROS),
+	m_firstTime(TRUE)
 {
-	//CRect rect;
+
+//	CRect rect;
 	//GetClientRect(rect);
-	//_parameters_dialog.setS(rect.Width() / 10);
+	//int w = rect.Width();
 }
+
+
 
 CChildView::~CChildView()
 {
@@ -54,15 +59,27 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	return TRUE;
 }
 
+
+
+
+
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); 
 
+
+
 	CRect rect;
-	GetClientRect(rect);
+	this->GetClientRect(rect);
 
 	auto width = rect.Width();
 	auto height = rect.Height();
+
+	//init the _s on first time
+	if (m_firstTime) {
+		_parameters_dialog.initSByWidth(width);
+		m_firstTime = FALSE;
+	}
 
 	auto c1 = _parameters_dialog.getColor1();
 	auto c2 = _parameters_dialog.getColor2();
